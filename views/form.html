@@ -1,0 +1,38 @@
+<?- include head.html -?>
+
+<form onsubmit="javascript:var file=$('#file'); if(!file.val()){
+	file.remove()}" method="post" enctype="multipart/form-data" action="/addimage">
+
+	<input type="hidden" name="id" value="<?=orempty(result.id)?>"/>
+	<input type="hidden" id="prevImage" name="" value="<?=orempty(result.id)?>"/>
+	<label for="author">Name: </label>
+	<input type="text" name="author" value="<?=orempty(result.name)?>"/>
+	<br/>
+
+<? if(result.id){?>
+	<span><a href="/image/<?=orempty(result?result.id:'')?>">Edit Image</a></span> <span><a href="/image/<?=orempty(result.id)?>/remove">Remove Image</a></span>
+	<br>
+<?}?>
+
+	<label for="content">Content: </label>
+	<br/>
+	<textarea rows="5" cols="50" name="content"><?=orempty(result.mimetype)?></textarea>
+	<br/>
+	<label for="image">Image(optional): </label>
+
+<? if(result.id){?>
+	<img id="image" src="/image/<?=result.id?>"/>
+	<br>
+
+	<input type="button" value="Remove Image" onclick="javascript:
+		$('#image).hide(); $('#filecnt').show();
+	  $('#prevImage').attr('name', 'prevImage');
+	"/>
+<? }?>
+
+	<div <? if(typeof result.id != 'undefined'){?> style="display:none"<?}?> id="filecnt">
+		<input type="file" name="image" id="file"/>
+	</div><br/>
+	<input type="submit"/>
+</form>
+<?- include footer.html -?>

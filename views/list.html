@@ -1,0 +1,14 @@
+<div style="margin-top:20px">
+	<label for="author">Name: </label>
+	<a title="Edit Image" href="/image/<?=orempty(result.id)?>"><?=orempty(result.name)?></a><br/>
+
+	<span id="edit"><a
+		href="/image/<?=orempty(result.id)?>">Edit image</a></span> <span id="dele"><a href="/image/<?=orempty(result.id)?>/remove">Remove Image</a></span>	<br/>
+
+	<label for="content">Content: </label>
+	<div id="content" class="content"><?=orempty(result.mimetype)?></div>
+	<?if(orempty(result.fileId)){?>
+	<label for="image">Image: </label>
+	<img id="image" src="/getimg/<?=orempty(result.id)?>"/>
+	<?}?>
+</div>
